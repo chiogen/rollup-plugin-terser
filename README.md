@@ -3,6 +3,8 @@
 > This is a reduced fork of [TrySound/rollup-plugin-terser](https://github.com/TrySound/rollup-plugin-terser)
 > - Typescript
 > - Removed jest-worker and its dependencies
+>
+> This plugin is not published yet.
 
 
 [travis-img]: https://travis-ci.org/TrySound/rollup-plugin-terser.svg
