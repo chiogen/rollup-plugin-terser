@@ -1,5 +1,5 @@
 const { rollup } = require("rollup");
-const { terser } = require("../");
+const { terser } = require("../build/rollup-plugin-terser");
 
 test("minify", async () => {
   const bundle = await rollup({
