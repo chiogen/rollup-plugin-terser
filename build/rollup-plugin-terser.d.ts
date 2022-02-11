@@ -1,6 +1,4 @@
+import type { Plugin } from 'rollup';
 import { MinifyOptions } from "terser";
 export declare type Options = Omit<MinifyOptions, 'sourceMap'>;
-export default function terser(userOptions?: Options): {
-    name: string;
-    renderChunk(code: any, chunk: any, outputOptions: any): Promise<import("terser").MinifyOutput>;
-};
+export declare function terser(userOptions?: Options): Plugin;

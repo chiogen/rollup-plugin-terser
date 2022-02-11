@@ -37,5 +37,12 @@
     "prettier": "^2.0.5",
     "rollup": "^2.67.2",
     "typescript": "^4.5.5"
+  },
+  "bugs": {
+    "url": "https://github.com/chiogen/rollup-plugin-terser/issues"
+  },
+  "homepage": "https://github.com/chiogen/rollup-plugin-terser#readme",
+  "directories": {
+    "test": "test"
   }
 }

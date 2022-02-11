@@ -1,24 +1,21 @@
 import codeFrameColumns from "@babel/code-frame";
-import { transform } from "./transform";
-export default function terser(userOptions = {}) {
+import { minify } from "terser";
+const OPTION_MODULE_FORMATS = ['es', 'esm'];
+
+export function terser(userOptions = {}) {
     if ('sourceMap' in userOptions) {
         throw Error("sourceMap option is removed. Now it is inferred from rollup options.");
     }
     return {
         name: "terser",
-        async renderChunk(code, chunk, outputOptions) {
-            const defaultOptions = {
-                sourceMap: outputOptions.sourcemap === true || typeof outputOptions.sourcemap === "string",
-            };
-            if (outputOptions.format === "es" || outputOptions.format === "esm") {
-                defaultOptions.module = true;
-            }
-            if (outputOptions.format === "cjs") {
-                defaultOptions.toplevel = true;
-            }
+        async renderChunk(code, _chunk, outputOptions) {
+            const options = configure(userOptions, outputOptions);
             try {
-                const result = await transform(code, { ...defaultOptions, ...userOptions });
-                return result.result;
+                const result = await minify(code, options);
+                return {
+                    code: result.code,
+                    map: result.map
+                };
             }
             catch (error) {
                 const { message, line, col: column } = error;
@@ -27,4 +24,16 @@ export default function terser(userOptions = {}) {
             }
         },
     };
+}
+
+function configure(userOptions, outputOptions) {
+    const options = {
+        sourceMap: outputOptions.sourcemap === true || typeof outputOptions.sourcemap === "string",
+        ...userOptions
+    };
+    if (OPTION_MODULE_FORMATS.includes(outputOptions.format))
+        options.module = true;
+    if (outputOptions.format === "cjs")
+        options.toplevel = true;
+    return options;
 }
