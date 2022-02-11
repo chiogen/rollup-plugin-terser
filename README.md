@@ -25,7 +25,7 @@ _Note: this package requires rollup@0.66 and higher (including rollup@2.0.0)_
 
 ```js
 import { rollup } from "rollup";
-import { terser } from "rollup-plugin-terser";
+import { terser } from "@chiogen/rollup-plugin-terser";
 
 rollup({
   input: "main.js",
