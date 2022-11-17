@@ -2,7 +2,7 @@
   "name": "@chiogen/rollup-plugin-terser",
   "version": "7.1.1",
   "description": "Rollup plugin to minify generated es bundle",
-  "type": "module",
+  "type": "commonjs",
   "main": "build/rollup-plugin-terser.js",
   "module": "build/rollup-plugin-terser.js",
   "files": [
